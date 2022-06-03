@@ -54,6 +54,28 @@ while True:
             print('Попробуйте ещё раз')
     elif menu_choice == '5':                                                         # просмотр содержимого рабочей директории
         print(os.listdir())
+        print('1 - Да')
+        print('2 - Нет')
+        choise_save_dir = int(input('Хотите сохранить содержимое рабочей директории в файл?'))
+        if choise_save_dir == 1:
+            listdir_var = open('listdir.txt', 'w', encoding="utf-8")
+            list_dir = []
+            list_files = []
+            for dirpath, dirnames, filenames in os.walk("."):
+                for dirname in dirnames:
+                    list_dir.append(dirname)
+                for filename in filenames:
+                    list_files.append(filename)
+            list_dir = map(lambda x: x + ', ', list_dir)
+            list_files = map(lambda x: x + ', ', list_files)
+            listdir_var.write('Папки: ')
+            listdir_var.writelines(list_dir)
+            listdir_var.write('\n')
+            listdir_var.write('Файлы: ')
+            listdir_var.writelines(list_files)
+            listdir_var.close()
+        else:
+            exit
     elif menu_choice == '6':                                                         # посмотреть только папки
         for dirpath, dirnames, filenames in os.walk("."):
             for dirname in dirnames:
