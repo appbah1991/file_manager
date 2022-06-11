@@ -1,6 +1,7 @@
 def bank_console():
     import os.path
     all_dep = 0
+    deposit = 0
     file_path = "account.txt"                                  # Создаем переменную для проверки наличия файла с указанием суммы на счете
     check_deposit = os.path.exists(file_path)                  # Создаем переменную для цикла (содержит тру или фалс) для определения наличия файла с указанием суммы на счете
     if check_deposit == True:                                  # Сам цикл - проверяет есть ли файл со счетом
@@ -26,10 +27,10 @@ def bank_console():
             else:
                 print('Суммы на вашем счете не достаточно для покупки')
         elif choice == '3':
-            n = 1
-            for i in history:
-                print(n, f': Покупка - "{i}"', f'на сумму {history[i]}')
-                n += 1
+                n = 1
+                for i in history:
+                    print(n, f': Покупка - "{i}"', f'на сумму {history[i]}')
+                    n+= 1
         elif choice == '4':
             file_account = open('account.txt', 'w')        # открываем файл с количеством денег на счете для перезаписи
             file_account.write(str(all_dep))
@@ -44,4 +45,3 @@ def bank_console():
         deposit = 0
         print('Ваш депозит составляет: ', all_dep)
         print('Выберите пункт меню:')
-
